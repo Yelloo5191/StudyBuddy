@@ -71,6 +71,8 @@ const config: Config = {
           800: "#b89dac",
           900: "#dbced6",
         },
+        dark: "#111111",
+        dark_light: "#191919",
       },
     },
   },
