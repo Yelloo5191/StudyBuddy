@@ -1,6 +1,5 @@
 "use client";
 import { FaBook } from "react-icons/fa6";
-import { EaseChat } from "agora-chat-uikit";
 
 import AgoraRTC, {
   AgoraRTCProvider,
