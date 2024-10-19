@@ -11,6 +11,9 @@
   "dependencies": {
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.45.5",
+    "agora-chat-uikit": "^1.1.0",
+    "agora-rtc-react": "^2.3.0",
+    "agora-rtc-sdk-ng": "^4.22.1",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",

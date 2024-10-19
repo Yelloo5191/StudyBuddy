@@ -1,0 +1,123 @@
+"use client";
+import { FaBook } from "react-icons/fa6";
+import { EaseChat } from "agora-chat-uikit";
+
+import AgoraRTC, {
+  AgoraRTCProvider,
+  LocalVideoTrack,
+  RemoteUser,
+  useJoin,
+  useLocalCameraTrack,
+  useLocalMicrophoneTrack,
+  usePublish,
+  useRTCClient,
+  useRemoteAudioTracks,
+  useRemoteUsers,
+} from "agora-rtc-react";
+import { useRouter } from "next/navigation";
+
+function Dashboard(props: { appId: string; channelName: string }) {
+  const client = useRTCClient(
+    AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })
+  );
+
+  return (
+    <AgoraRTCProvider client={client}>
+      <div className="flex flex-row max-h-screen overflow-hidden w-full shadow-md bg-dark_light p-8 gap-4 h-screen">
+        <div className="flex flex-col gap-4 h-full w-full">
+          {/* TITLE */}
+          <div className="w-full h-16 flex flex-row justify-start gap-4 px-2 items-center shadow-md bg-dark rounded-lg">
+            <FaBook size={30} />
+            <h1 className="text-lg lg:text-2xl text-white">
+              {props.channelName}
+            </h1>
+          </div>
+          <div className="flex flex-row w-full h-full gap-4">
+            <div className="flex flex-col w-full h-full gap-4">
+              {/* FACECAMS */}
+              <Videos channelName={props.channelName} AppID={props.appId} />
+              <div className="flex items-center justify-between">
+                <p className="text-green-400">Live</p>
+                <a
+                  className="px-5 py-3 text-base font-medium text-center text-white bg-red-400 rounded-lg hover:bg-red-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 w-40"
+                  href="/"
+                >
+                  End Call
+                </a>
+              </div>
+            </div>
+            {/* CHAT */}
+            <div className="flex flex-col shadow-md w-full gap-4 h-full">
+              <div className="w-full h-full bg-light_gray rounded-lg"></div>
+              <div className="w-full h-16 flex gap-2 justify-center items-center p-4 bg-light_gray rounded-lg">
+                <input className="w-full h-full rounded-md bg-taupe_gray" />
+                <a className="px-5 py-1 text-base font-medium text-center text-white bg-red-400 rounded-xl hover:bg-red-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 w-20">
+                  Send
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* MUSIC */}
+        <div className="w-1/2 h-full bg-raisin_black rounded-lg"></div>
+      </div>
+    </AgoraRTCProvider>
+  );
+}
+
+function Videos(props: { channelName: string; AppID: string }) {
+  const { AppID, channelName } = props;
+  const { isLoading: isLoadingMic, localMicrophoneTrack } =
+    useLocalMicrophoneTrack();
+  const { isLoading: isLoadingCam, localCameraTrack } = useLocalCameraTrack();
+  const remoteUsers = useRemoteUsers();
+  const { audioTracks } = useRemoteAudioTracks(remoteUsers);
+
+  const router = useRouter();
+
+  // Maximum allowed participants
+  const maxParticipants = 2;
+  const totalParticipants = remoteUsers.length + 1; // 1 for the local user
+
+  // Prevent more users from joining if the limit is reached
+  if (totalParticipants > maxParticipants) {
+    router.push("/");
+  }
+
+  usePublish([localMicrophoneTrack, localCameraTrack]);
+  useJoin({
+    appid: AppID,
+    channel: channelName,
+    token: null,
+  });
+
+  audioTracks.map((track) => track.play());
+  const deviceLoading = isLoadingMic || isLoadingCam;
+  if (deviceLoading)
+    return (
+      <div className="flex flex-col items-center pt-40">Loading devices...</div>
+    );
+  const unit = "minmax(0, 1fr) ";
+
+  return (
+    <div className="flex flex-col justify-between w-full h-full p-1">
+      <div
+        className={`grid gap-1 flex-1`}
+        style={{
+          gridTemplateColumns: remoteUsers.length > 1 ? unit.repeat(2) : unit,
+        }}
+      >
+        <LocalVideoTrack
+          track={localCameraTrack}
+          play={true}
+          className="w-full h-full"
+        />
+        {remoteUsers.map((user) => (
+          <RemoteUser key={user.uid} user={user} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Dashboard;
