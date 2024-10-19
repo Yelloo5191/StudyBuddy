@@ -73,6 +73,7 @@ const config: Config = {
         },
         dark: "#111111",
         dark_light: "#191919",
+        light_gray: "#2D2D2C",
       },
     },
   },
