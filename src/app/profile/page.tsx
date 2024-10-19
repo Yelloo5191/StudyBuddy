@@ -6,12 +6,9 @@ import LogOut from "./LogOut";
 import Image from "next/image";
 
 export default async function page() {
-  const supabase = createClient();
-  const { data, error } = await supabase.auth.getUser();
+  const supabase = createClient()
 
-  if (error || !data?.user) {
-    redirect("/login");
-  }
+  supabase.auth.signInWithOAuth({provider:'google'})
 
   return (
     <>
@@ -32,7 +29,7 @@ export default async function page() {
             />
           </div>
           <div className="w-1/2 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg">
-            <h1 className="text-lg text-white">{data.user.email}</h1>
+            {/* <h1 className="text-lg text-white">{data.user.email}</h1> */}
             <LogOut />
           </div>
         </div>
