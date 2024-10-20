@@ -15,6 +15,7 @@ import AgoraRTC, {
 } from "agora-rtc-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Chat from "./Chat/Chat";
 
 function Dashboard(props: { appId: string; channelName: string }) {
   const client = useRTCClient(
@@ -47,15 +48,7 @@ function Dashboard(props: { appId: string; channelName: string }) {
               </div>
             </div>
             {/* CHAT */}
-            <div className="flex flex-col shadow-md w-full gap-4 h-full">
-              <div className="w-full h-full bg-light_gray rounded-lg"></div>
-              <div className="w-full h-16 flex gap-2 justify-center items-center p-4 bg-light_gray rounded-lg">
-                <input className="w-full h-full rounded-md bg-taupe_gray" />
-                <a className="px-5 py-1 text-base font-medium text-center text-white bg-red-400 rounded-xl hover:bg-red-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 w-20">
-                  Send
-                </a>
-              </div>
-            </div>
+            <Chat />
           </div>
         </div>
         {/* MUSIC */}

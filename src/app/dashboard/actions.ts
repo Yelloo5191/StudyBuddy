@@ -11,7 +11,6 @@ const PairedMatch = z.object({
   pair: z.string(),
 });
 
-// Function to start a session and handle user input
 export async function startSession(formData: FormData) {
   const supabase = createClient();
   const target = Object.fromEntries(formData.entries());
@@ -22,7 +21,7 @@ export async function startSession(formData: FormData) {
 
   if (!user) {
     console.error("User not authenticated");
-    return; // Handle unauthenticated user case (show an error or redirect)
+    return;
   }
 
   const userId = user.id;
@@ -36,7 +35,6 @@ export async function startSession(formData: FormData) {
   await addToQueue(userId, classes, majors, interests);
 }
 
-// Function to add user to the waiting queue
 export async function addToQueue(
   userId: string,
   classes: string[],
@@ -45,7 +43,6 @@ export async function addToQueue(
 ) {
   const supabase = createClient();
 
-  // Check if user is already in the queue
   const { data: queueData, error: queueError } = await supabase
     .from("waiting_queue")
     .select("*")
@@ -61,7 +58,6 @@ export async function addToQueue(
     return;
   }
 
-  // Add user to the queue
   const { data, error } = await supabase
     .from("waiting_queue")
     .insert([{ user_id: userId, classes, majors, interests }])
@@ -79,7 +75,6 @@ export async function addToQueue(
       const buddy1 = buddyPair.pair.split(" - ")[0];
       const buddy2 = buddyPair.pair.split(" - ")[1];
 
-      // Remove buddies from the queue
       await removeFromQueue(buddy1);
       await removeFromQueue(buddy2);
       const buddy1_formatted = buddy1.replaceAll("-", "");
