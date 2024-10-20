@@ -5,10 +5,10 @@ import { RealtimeChannel, User } from "@supabase/supabase-js";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-export default function Chat() {
+export default function Chat({ room_id }: { room_id: string }) {
   const channel = useRef<RealtimeChannel | null>(null);
   const [messages, setMessages] = useState<
-    { message: string; user_id: string; avatar: string }[]
+    { message: string; user_id: string; avatar: string; room_id: string }[]
   >([]);
   const [user, setUser] = useState<User>();
   const [avatar, setAvatar] = useState<string>();
@@ -48,7 +48,7 @@ export default function Chat() {
       });
 
       channel.current
-        .on("broadcast", { event: "message" }, ({ payload }) => {
+        .on("broadcast", { event: `message ${room_id}` }, ({ payload }) => {
           setMessages((prev) => [...prev, payload]);
         })
         .subscribe();
@@ -58,7 +58,7 @@ export default function Chat() {
       channel.current?.unsubscribe();
       channel.current = null;
     };
-  }, []);
+  }, [room_id, supabase]);
   return (
     <div className="flex flex-col shadow-md w-full gap-4 h-full">
       <div className="w-full h-[550px] flex flex-col gap-2 overflow-y-auto bg-light_gray rounded-lg">
@@ -91,8 +91,13 @@ export default function Chat() {
           ).value;
           channel.current?.send({
             type: "broadcast",
-            event: "message",
-            payload: { message, user_id: user?.id, avatar: avatar },
+            event: `message ${room_id}`,
+            payload: {
+              message,
+              user_id: user?.id,
+              avatar: avatar,
+              room_id: room_id,
+            },
           });
           (
             document.querySelector(

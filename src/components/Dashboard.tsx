@@ -48,7 +48,7 @@ function Dashboard(props: { appId: string; channelName: string }) {
               </div>
             </div>
             {/* CHAT */}
-            <Chat />
+            <Chat room_id={props.channelName} />
           </div>
         </div>
         {/* MUSIC */}
