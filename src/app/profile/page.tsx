@@ -5,32 +5,27 @@ import LogOut from "./LogOut";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-interface Profile {
-  id: string,
-  username: string,
-  full_name: string,
-  avatar_url: string,
-}
-
 export default async function ProfilePage() {
-
   const supabase = createClient();
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect('/login')
+    redirect("/login");
   }
 
-  const { data } = await supabase.from('profiles')
-    .select('*')
-    .eq("id", user.id)
+  const { data } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", user.id);
 
-  if (!data){
-    redirect('/login')
+  if (!data) {
+    redirect("/login");
   }
 
-  console.log(data)
+  console.log(data);
 
   return (
     <>
@@ -42,7 +37,10 @@ export default async function ProfilePage() {
         <div className="flex gap-4 h-full">
           <div className="w-1/2 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg">
             <Image
-              src={data[0].avatar_url || "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"}
+              src={
+                data[0].avatar_url ||
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"
+              }
               alt="avatar"
               width={250}
               height={250}
@@ -52,9 +50,7 @@ export default async function ProfilePage() {
           </div>
           <div className="w-1/2 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg">
             <h1 className="text-lg text-white">
-              <b>
-                {data[0].full_name || "No full name available"}
-              </b>
+              <b>{data[0].full_name || "No full name available"}</b>
             </h1>
             <h1 className="text-lg text-white">
               {user.email || "No email available"}
