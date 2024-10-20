@@ -14,13 +14,26 @@ import AgoraRTC, {
   useRemoteUsers,
 } from "agora-rtc-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chat from "./Chat/Chat";
+import Music from "./Music/Music";
+import { createClient } from "@/utils/supabase/client";
+import { User } from "@supabase/supabase-js";
 
 function Dashboard(props: { appId: string; channelName: string }) {
   const client = useRTCClient(
     AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })
   );
+
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await createClient().auth.getUser();
+      setUser(data?.user ?? null);
+    };
+    fetchUser();
+  }, []);
 
   return (
     <AgoraRTCProvider client={client}>
@@ -52,7 +65,9 @@ function Dashboard(props: { appId: string; channelName: string }) {
           </div>
         </div>
         {/* MUSIC */}
-        <div className="w-1/2 h-full bg-raisin_black rounded-lg"></div>
+        <div className="w-1/2 h-full bg-raisin_black rounded-lg">
+          <Music userId={user?.id ?? ""} />
+        </div>
       </div>
     </AgoraRTCProvider>
   );
