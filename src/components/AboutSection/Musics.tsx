@@ -19,7 +19,7 @@ export default function Musics() {
           alt="Second Music Image"
           width={100}
           height={100}
-          className="w-full rounded-lg object-cover mt-3"
+          className="w-full rounded-lg object-cover mt-3 mr-2"
         />
       </div>
 
