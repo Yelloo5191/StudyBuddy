@@ -8,12 +8,10 @@ export default function Page({ params }: { params: { channelName: string } }) {
   });
   return (
     <main className="flex w-full h-full flex-col">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Dashboard
-          appId={process.env.PUBLIC_AGORA_APP_ID!}
-          channelName={params.channelName}
-        ></Dashboard>
-      </Suspense>
+      <Dashboard
+        appId={process.env.PUBLIC_AGORA_APP_ID!}
+        channelName={params.channelName}
+      ></Dashboard>
     </main>
   );
 }

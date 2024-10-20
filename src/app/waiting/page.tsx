@@ -41,7 +41,7 @@ export default function Waiting() {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [router, supabase]);
+  }, [router]);
 
   return (
     <div className="flex flex-col items-center pt-40">

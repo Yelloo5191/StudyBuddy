@@ -94,6 +94,8 @@ function Videos(props: { channelName: string; AppID: string }) {
     router.push("/");
   }
 
+  console.log(remoteUsers);
+
   usePublish([localMicrophoneTrack, localCameraTrack]);
   useJoin({
     appid: AppID,
