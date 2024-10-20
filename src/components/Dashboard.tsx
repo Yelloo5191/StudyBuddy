@@ -65,8 +65,25 @@ function Dashboard(props: { appId: string; channelName: string }) {
           </div>
         </div>
         {/* MUSIC */}
-        <div className="w-1/2 h-full bg-raisin_black rounded-lg">
+        <div className="w-1/2 h-full bg-raisin_black rounded-lg flex flex-col">
           <Music userId={user?.id ?? ""} />
+          
+          <div className="flex h-full w-full justify-center items-center">
+            <iframe
+              // width="50%" 
+              // height="100%" 
+              src="https://www.youtube.com/embed/X7Xt2kIk6PE?autoplay=1&controls=0&disablekb=1&modestbranding=1&rel=0&mute=1"
+              title="YouTube video player"
+              style={{ pointerEvents: 'none',
+              width: '25vw',
+              height: '70vh',
+              maxWidth: '1000px', 
+              maxHeight: '800px',
+              aspectRatio: '16/9', 
+            }} 
+              allow="autoplay; picture-in-picture"
+            ></iframe>
+          </div>
         </div>
       </div>
     </AgoraRTCProvider>
