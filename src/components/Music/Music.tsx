@@ -89,9 +89,6 @@ function Music(props: { userId: string }) {
     <div className="flex flex-col h-full w-full gap-4 p-4">
       <div className="flex flex-row justify-between items-center">
         <h1 className="text-white text-lg">Music</h1>
-        <button className="text-white" onClick={handlePlayPause}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
       </div>
       <div className="flex flex-col gap-4">
         {music.map((song, index) => (
@@ -113,17 +110,7 @@ function Music(props: { userId: string }) {
             onChange={handleVolumeChange}
           />
         </div>
-        <div className="flex flex-row gap-4">
-          <button
-            onClick={() => {
-              setCurrentSong(null);
-              setMusic([]);
-              setIsPlaying(false);
-            }}
-          >
-            Stop
-          </button>
-
+        <div className="flex flex-row w-full justify-center gap-4">
           <button onClick={handlePlayPause}>
             {isPlaying ? "Pause" : "Play"}
           </button>

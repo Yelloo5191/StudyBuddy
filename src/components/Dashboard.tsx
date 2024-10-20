@@ -57,7 +57,7 @@ function Dashboard(props: {
           </div>
         </div>
         {/* MUSIC */}
-        <div className="w-1/2 h-full bg-raisin_black rounded-lg">
+        <div className="w-1/2 mt-20 h-fit bg-raisin_black rounded-lg">
           <Music userId={props.userId} />
         </div>
       </div>
