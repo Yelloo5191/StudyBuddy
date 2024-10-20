@@ -18,7 +18,7 @@ export default async function Header() {
       </Link>
 
       <Link href="/">
-        <p className="text-5xl text-white">StudySync</p>
+        <p className="text-5xl text-white">StudyBuddy</p>
       </Link>
       {data.user ? (
         <Link href="/profile">

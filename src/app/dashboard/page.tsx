@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import FormJoin from "./Form";
-
+import Header from "@/components/Header";
+import Footer from "@/components/Footer/Footer";
 export default async function page() {
   const supabase = createClient();
 
@@ -10,8 +11,12 @@ export default async function page() {
     redirect("/login");
   }
   return (
-    <div className="w-screen h-screen bg-dark_light p-8">
-      <FormJoin />
+    <div>
+      <Header />
+      <div className="w-screen h-screen bg-dark_light p-8">
+        <FormJoin />
+      </div>
+      <Footer />
     </div>
   );
 }
