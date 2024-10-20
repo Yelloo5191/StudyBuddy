@@ -8,11 +8,12 @@ export default async function page() {
 
   const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) {
-    redirect("/login");
+    redirect("/profile");
   }
   return (
     <div>
       <Header />
+
       <div className="w-screen h-screen bg-dark_light p-8">
         <FormJoin />
       </div>

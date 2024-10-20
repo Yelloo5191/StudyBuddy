@@ -1,3 +1,4 @@
+"use client"
 import { LoginWithGoogle } from "./actions";
 
 export default function SignIn() {

@@ -14,13 +14,15 @@ import AgoraRTC, {
   useRemoteUsers,
 } from "agora-rtc-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Chat from "./Chat/Chat";
 import Music from "./Music/Music";
-import { createClient } from "@/utils/supabase/client";
-import { User } from "@supabase/supabase-js";
 
-function Dashboard(props: { appId: string; channelName: string }) {
+function Dashboard(props: {
+  appId: string;
+  channelName: string;
+  userId: string;
+}) {
   const client = useRTCClient(
     AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })
   );
@@ -66,7 +68,7 @@ function Dashboard(props: { appId: string; channelName: string }) {
         {/* MUSIC */}
 
         <div className="w-1/2 h-full bg-raisin_black rounded-lg flex flex-col">
-          <Music userId={user?.id ?? ""} />
+          <Music userId={props.userId} />
           
           <div className="flex h-full w-full justify-center items-center">
             <iframe
