@@ -55,7 +55,7 @@ export async function addToQueue(
 
   if (queueData?.length) {
     console.log("User already in queue:", queueData);
-    return;
+    redirect("/waiting");
   }
 
   const { data, error } = await supabase
