@@ -13,24 +13,26 @@ export default function Waiting() {
     const subscription = channel
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "waiting_queue" },
+        { event: "INSERT", schema: "public", table: "waiting_queue" },
         async (payload) => {
           console.log("Changes in queue:", payload);
 
-          const { id: removedUserId } = payload.old as { id: string };
+          const { user_id: addedUserId } = payload.new as { user_id: string };
           const {
             data: { user: currentUser },
           } = await supabase.auth.getUser();
-          console.log("Current user:", currentUser);
+          console.log("added:", addedUserId);
           const currentUserId = currentUser?.id;
 
-          if (removedUserId === currentUserId) {
-            const buddy1_formatted = removedUserId.replaceAll("-", "");
-            const buddy2_formatted = (
-              payload.new as { user_id: string }
-            ).user_id.replaceAll("-", "");
-            const channelName = `${buddy1_formatted}${buddy2_formatted}`;
+          if (addedUserId && currentUserId && addedUserId !== currentUserId) {
+            let buddy1_formatted = addedUserId.replaceAll("-", "");
+            let buddy2_formatted = currentUserId.replaceAll("-", "");
+            const channelName = `${buddy2_formatted}${buddy1_formatted}`;
             router.push(`/channel/${channelName}`);
+          } else {
+            console.error(
+              "User IDs are undefined. Cannot format for channel name."
+            );
           }
         }
       )
