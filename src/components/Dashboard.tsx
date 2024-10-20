@@ -16,8 +16,13 @@ import AgoraRTC, {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Chat from "./Chat/Chat";
+import Music from "./Music/Music";
 
-function Dashboard(props: { appId: string; channelName: string }) {
+function Dashboard(props: {
+  appId: string;
+  channelName: string;
+  userId: string;
+}) {
   const client = useRTCClient(
     AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })
   );
@@ -52,7 +57,9 @@ function Dashboard(props: { appId: string; channelName: string }) {
           </div>
         </div>
         {/* MUSIC */}
-        <div className="w-1/2 h-full bg-raisin_black rounded-lg"></div>
+        <div className="w-1/2 h-full bg-raisin_black rounded-lg">
+          <Music userId={props.userId} />
+        </div>
       </div>
     </AgoraRTCProvider>
   );
