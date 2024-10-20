@@ -9,15 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fetchai/ai-engine-sdk": "^0.1.0",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.45.5",
     "agora-chat-uikit": "^1.1.0",
     "agora-rtc-react": "^2.3.0",
     "agora-rtc-sdk-ng": "^4.22.1",
+    "fetchai-sdk": "^1.11.0",
     "next": "14.2.15",
+    "openai": "^4.68.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.3.0"
+    "react-icons": "^5.3.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

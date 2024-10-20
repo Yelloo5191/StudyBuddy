@@ -1,6 +1,6 @@
-import JoinCall from "./JoinCall";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import FormJoin from "./Form";
 
 export default async function page() {
   const supabase = createClient();
@@ -11,7 +11,7 @@ export default async function page() {
   }
   return (
     <div className="w-screen h-screen bg-dark_light p-8">
-      <JoinCall />
+      <FormJoin />
     </div>
   );
 }
