@@ -12,7 +12,7 @@ export default async function Header() {
   }
 
   return (
-    <div className="w-full h-40 bg-dark flex flex-row gap-12 justify-center items-center">
+    <div className="w-full h-40 bg-dark flex flex-row gap-4 md:gap-12 justify-center items-center">
       <Link href="/dashboard">
         <p className="text-2xl text-white gruppo">Start</p>
       </Link>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Musics() {
   return (
-    <div className="flex flex-row w-fitS gap-2 mt-2">
+    <div className="flex flex-row w-fitS gap-2 md:mt-2">
       <div className="w-1/3">
         <Image
           src="/landing/Spotify.png"
