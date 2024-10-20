@@ -17,6 +17,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function Dashboard(props: { appId: string; channelName: string }) {
+  if (typeof window === "undefined") return null;
+
   const client = useRTCClient(
     AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })
   );
@@ -66,6 +68,8 @@ function Dashboard(props: { appId: string; channelName: string }) {
 }
 
 function Videos(props: { channelName: string; AppID: string }) {
+  if (typeof window === "undefined") return null;
+
   const { AppID, channelName } = props;
   const { isLoading: isLoadingMic, localMicrophoneTrack } =
     useLocalMicrophoneTrack();
