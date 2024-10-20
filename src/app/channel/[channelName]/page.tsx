@@ -1,6 +1,5 @@
 // import Call from "@/components/Call";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 export default function Page({ params }: { params: { channelName: string } }) {
   const Dashboard = dynamic(() => import("@/components/Dashboard"), {
