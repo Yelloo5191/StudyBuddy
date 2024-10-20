@@ -1,14 +1,13 @@
 import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LogOut from "./LogOut";
 import Image from "next/image";
 
-export default async function page() {
-  const supabase = createClient()
+export default async function ProfilePage() {
+  const supabase = createClient();
 
-  supabase.auth.signInWithOAuth({provider:'google'})
+  const { data, error } = await supabase.auth.getUser();
 
   return (
     <>
@@ -29,7 +28,9 @@ export default async function page() {
             />
           </div>
           <div className="w-1/2 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg">
-            {/* <h1 className="text-lg text-white">{data.user.email}</h1> */}
+            <h1 className="text-lg text-white">
+              {data?.user ? data.user.email : "No email available"}
+            </h1>
             <LogOut />
           </div>
         </div>
