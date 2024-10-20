@@ -1,14 +1,16 @@
-import { login, signup } from "./actions";
+import SignInButton from "./SignInButton";
 
 export default function LoginPage() {
   return (
-    <div className="w-1/2 mx-auto h-screen bg-dark_light p-8">
-      <form className="flex flex-col h-full justify-center items-center gap-4">
-        <input type="email" name="email" className="text-dark_light" />
-        <input type="password" name="password" className="text-dark_light" />
-        <button formAction={login}>Login</button>
-        <button formAction={signup}>Signup</button>
-      </form>
+    <div className="flex flex-col bg-dark_light w-full h-screen gap-4 p-4">
+      <div className="w-full h-16 flex flex-row justify-center items-center bg-light_gray rounded-lg">
+        <h1 className="text-lg text-white">Log-in!</h1>
+      </div>
+      <div className="flex gap-4 h-full">
+        <div className="w-1/2 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg">
+          <SignInButton />
+        </div>
+      </div>
     </div>
   );
 }
