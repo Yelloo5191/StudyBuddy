@@ -14,6 +14,13 @@ export default function Chat() {
   const [avatar, setAvatar] = useState<string>();
   const supabase = createClient();
 
+  const messageEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Auto-scroll to the bottom whenever the messages array is updated
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) {
@@ -54,7 +61,7 @@ export default function Chat() {
   }, []);
   return (
     <div className="flex flex-col shadow-md w-full gap-4 h-full">
-      <div className="w-full h-full flex flex-col gap-2 overflow-auto bg-light_gray rounded-lg">
+      <div className="w-full h-[550px] flex flex-col gap-2 overflow-y-auto bg-light_gray rounded-lg">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -72,6 +79,7 @@ export default function Chat() {
             <p className="text-white">{message.message}</p>
           </div>
         ))}
+        <div ref={messageEndRef} />
       </div>
       <form
         onSubmit={(e) => {
