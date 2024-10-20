@@ -18,7 +18,7 @@ export default async function About() {
   return (
     <div className="flex flex-col">
       <div className="bg-seasalt-500">
-        <h1 className="mt-8 italic font-bold text-center text-black text-7xl ">
+        <h1 className="mt-12 italic font-bold text-center text-black text-7xl ">
           How does it work?
         </h1>
       </div>
