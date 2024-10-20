@@ -65,7 +65,7 @@ export default function Chat({ room_id }: { room_id: string }) {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`w-full p-2 flex flex-row gap-4 items-center ${
+            className={`w-auto max-w-full p-2 flex flex-row gap-4 items-center ${
               message.user_id == user?.id ? "bg-taupe_gray" : "bg-redwood"
             } rounded-lg`}
           >
