@@ -26,7 +26,6 @@ function Dashboard(props: { appId: string; channelName: string }) {
   );
 
   const [user, setUser] = useState<User | null>(null);
-
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await createClient().auth.getUser();
@@ -65,6 +64,7 @@ function Dashboard(props: { appId: string; channelName: string }) {
           </div>
         </div>
         {/* MUSIC */}
+
         <div className="w-1/2 h-full bg-raisin_black rounded-lg flex flex-col">
           <Music userId={user?.id ?? ""} />
           
@@ -85,6 +85,7 @@ function Dashboard(props: { appId: string; channelName: string }) {
             ></iframe>
           </div>
         </div>
+
       </div>
     </AgoraRTCProvider>
   );
