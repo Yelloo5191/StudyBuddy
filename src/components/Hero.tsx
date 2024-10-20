@@ -3,15 +3,16 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <div className="w-full h-screen relative flex flex-col gap-4 justify-center items-center bg-dark_light">
-      <div className="flex flex-row gap-4 w-fill px-28 justify-center items-center">
+      <div className="flex flex-row gap-4 w-fill px-28 justify-center items-center -mt-24">
         {/* TEXT BLOCK */}
         <div className="flex flex-col w-1/3 gap-4 justify-center items-center">
           <h1 className="text-5xl text-white">
             Start a session with a buddy now!
           </h1>
           <p className="text-2xl text-white">
-            Connect to students like you INSTANTLY. Work together, anywhere
-            around the world.{" "}
+            Connect to students like you INSTANTLY. 
+            Work together, anywhere
+            around the world.
           </p>
         </div>
 
