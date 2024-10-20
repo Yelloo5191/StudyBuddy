@@ -22,13 +22,13 @@ export default async function About() {
           How does it work?
         </h1>
       </div>
-      <div className="flex flex-col  bg-seasalt-500 ">
-        <div className="w-full h-full justify-center relative flex flex-row p-2 gap-5 bg-seasalt-500">
+      <div className="flex flex-col bg-seasalt-500 ">
+        <div className="w-full justify-center relative flex flex-col md:flex-row p-2 gap-4 md:gap-5">
           <Information />
           <ListenToMusic />
           <AIUsage />
         </div>
-        <div className="mb-10 bg-seasalt-500 flex justify-center items-center">
+        <div className="mb-10 flex justify-center items-center">
           {data.user ? (
             <Link href="/dashboard">
               <p className="text-6xl flex focus-center text-gray-600 gruppo">

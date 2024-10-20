@@ -50,8 +50,8 @@ export default async function ProfilePage() {
         <div className="w-full h-16 flex flex-row justify-center items-center bg-light_gray rounded-lg">
           <h1 className="text-lg text-white">Profile</h1>
         </div>
-        <div className="flex gap-4 h-full">
-          <div className="w-1/4 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg justify-center items-center">
+        <div className="flex flex-col md:flex-row w-full gap-4 h-full">
+          <div className="w-full md:w-1/2 h-full md:h-2/3 flex flex-col gap-8 p-8 bg-light_gray rounded-lg justify-center items-center">
             <Image
               src={
                 data[0].avatar_url ||
@@ -64,8 +64,8 @@ export default async function ProfilePage() {
               unoptimized
             />
           </div>
-          <div className="w-full h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg relative">
-            <div className="flex flex-row gap-10">
+          <div className="w-full h-full md:h-2/3 flex flex-col gap-8 p-8 bg-light_gray rounded-lg relative">
+            <div className="flex flex-col md:flex-row gap-10">
               <div className="flex flex-col gap-6">
                 <h1 className="text-3xl text-white">
                   Welcome,
@@ -84,7 +84,7 @@ export default async function ProfilePage() {
                   <SwitchAccounts />
                 </div>
               </div>
-              <div className="w-full flex justify-center items-center">
+              <div className="w-full flex justify-center items-center mb-20 md:mb-0">
                 <h1 className="text-2xl text-white text-center italic">
                   {randomQuote}
                 </h1>

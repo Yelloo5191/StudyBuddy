@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Information() {
   return (
-    <div className="bg-gray-700 mt-24 relative w-full max-w-md h-fit p-4 mr-auto lg:mr-10 ml-auto lg:ml-14 text-white flex flex-col items-center rounded-lg">
+    <div className="bg-gray-700 md:mt-24 relative w-full max-w-md h-fit p-4 mr-auto lg:mr-10 ml-auto lg:ml-14 text-white flex flex-col items-center rounded-lg">
       {/* Aspect Ratio Container */}
       <div className="relative w-full" style={{ paddingBottom: "66.67%" }}>
         <Image
