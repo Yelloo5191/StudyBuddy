@@ -39,9 +39,18 @@ export default function JoinCall() {
             />
           </div>
         </div>
-        <div className="text-center">
+
+        <div className="text-center flex flex-col">
           <button className="inline-flex items-center justify-center px-5 py-3 mt-5 text-base font-medium text-center text-white bg-blue-400 rounded-lg hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
             Submit
+          </button>
+
+          <button
+            className="inline-flex items-center justify-center px-5 py-3 mt-5 text-base font-medium text-center text-white bg-slate-500 rounded-lg hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+            type="button"
+            onClick={() => router.push("/")}
+          >
+            Return to Home
           </button>
         </div>
       </form>

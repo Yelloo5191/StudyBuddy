@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "../utils/supabase/server";
+import SignIn from "@/app/login/SignInButton";
 
 export default async function Header() {
   const supabase = createClient();
@@ -12,21 +13,19 @@ export default async function Header() {
 
   return (
     <div className="w-full h-40 bg-dark flex flex-row gap-12 justify-center items-center">
-      <h1 className="text-5xl text-white">StudySync</h1>
-      <Link href="/">
-        <p className="text-2xl text-white gruppo">Home</p>
-      </Link>
       <Link href="/dashboard">
         <p className="text-2xl text-white gruppo">Start</p>
+      </Link>
+
+      <Link href="/">
+        <p className="text-5xl text-white">StudySync</p>
       </Link>
       {data.user ? (
         <Link href="/profile">
           <p className="text-2xl text-white gruppo">Profile</p>
         </Link>
       ) : (
-        <Link href="/login">
-          <p className="text-2xl text-white gruppo">Login</p>
-        </Link>
+        <SignIn />
       )}
     </div>
   );

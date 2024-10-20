@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import LogOut from "./LogOut";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import SwitchAccounts from "./SwitchAccount";
 
 export default async function ProfilePage() {
   const supabase = createClient();
@@ -49,13 +50,18 @@ export default async function ProfilePage() {
             />
           </div>
           <div className="w-1/2 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg">
-            <h1 className="text-lg text-white">
+            <h1 className="text-3xl text-white">
+              Welcome,
+              <br />
               <b>{data[0].full_name || "No full name available"}</b>
             </h1>
             <h1 className="text-lg text-white">
               {user.email || "No email available"}
             </h1>
-            <LogOut />
+            <div className="flex flex-col focus-center gap-2">
+              <LogOut />
+              <SwitchAccounts />
+            </div>
           </div>
         </div>
       </div>
