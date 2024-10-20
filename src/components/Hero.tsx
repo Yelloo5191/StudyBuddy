@@ -10,9 +10,8 @@ export default function Hero() {
             Start a session with a buddy now!
           </h1>
           <p className="text-2xl text-white">
-            Connect to students like you INSTANTLY, work together, chill
-            together. lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-            ipsum lorem ipsum.{" "}
+            Connect to students like you INSTANTLY. Work together, anywhere
+            around the world.{" "}
           </p>
         </div>
 
