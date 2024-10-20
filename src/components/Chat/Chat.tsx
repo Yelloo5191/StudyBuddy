@@ -8,7 +8,13 @@ import Image from "next/image";
 export default function Chat({ room_id }: { room_id: string }) {
   const channel = useRef<RealtimeChannel | null>(null);
   const [messages, setMessages] = useState<
-    { message: string; user_id: string; avatar: string; room_id: string }[]
+    {
+      message: string;
+      user_id: string;
+      avatar: string;
+      room_id: string;
+      name: string;
+    }[]
   >([]);
   const [user, setUser] = useState<User>();
   const [avatar, setAvatar] = useState<string>();
@@ -76,7 +82,12 @@ export default function Chat({ room_id }: { room_id: string }) {
               height={48}
               className="rounded-full"
             />
-            <p className="text-white text-wrap break-words">{message.message}</p>
+            <div className="flex flex-col gap-1">
+              <p className="text-white text-sm">{message.name}</p>
+              <p className="text-white text-wrap break-words">
+                {message.message}
+              </p>
+            </div>
           </div>
         ))}
         <div ref={messageEndRef} />
@@ -97,6 +108,7 @@ export default function Chat({ room_id }: { room_id: string }) {
               user_id: user?.id,
               avatar: avatar,
               room_id: room_id,
+              name: user?.user_metadata.full_name,
             },
           });
           (
