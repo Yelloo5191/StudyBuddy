@@ -65,8 +65,8 @@ export default async function ProfilePage() {
             />
           </div>
           <div className="w-3/4 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg relative">
-            <div className="flex flex-row gap-10">
-              <div className="flex flex-col gap-6">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-col gap-6 w-full">
                 <h1 className="text-3xl text-white">
                   Welcome,
                   <br />
@@ -84,7 +84,7 @@ export default async function ProfilePage() {
                   <SwitchAccounts />
                 </div>
               </div>
-                <div className="w-1/2 flex justify-center items-center">
+                <div className="w-full flex justify-center items-center">
                   <h1 className="text-2xl text-white text-center italic">
                     {randomQuote}
                   </h1>
