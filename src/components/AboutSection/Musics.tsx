@@ -15,7 +15,7 @@ export default function Musics() {
 
       <div className="w-1/3">
         <Image
-          src="/landing/youtube.png"
+          src="/landing/Youtube.png"
           alt="Second Music Image"
           width={800}
           height={800}
