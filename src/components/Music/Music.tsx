@@ -31,10 +31,10 @@ function Music(props: { userId: string }) {
     fetchMusic();
 
     const channel = supabase
-      .channel("broadcasts")
+      .channel("postgres_changes")
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "broadcasts" },
+        { event: "INSERT", schema: "public", table: "audio_sync" },
         (payload) => {
           setMusic((prevMusic) => [...prevMusic, payload.new.url]);
         }
