@@ -13,7 +13,7 @@ export default async function page() {
   return (
     <div>
       <Header />
-      <h1>Hello</h1>
+
       <div className="w-screen h-screen bg-dark_light p-8">
         <FormJoin />
       </div>
