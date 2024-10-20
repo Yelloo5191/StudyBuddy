@@ -16,17 +16,17 @@ export default function FormJoin() {
           name="classes"
           placeholder="Classes"
           required
-          className="rounded-lg w-full md:w-3/5 lg:w-1/2  p-2"
+          className="rounded-lg w-full md:w-3/5 lg:w-1/2 text-dark p-2"
         />
         <input
-          className="rounded-lg w-full md:w-3/5 lg:w-1/2  p-2"
+          className="rounded-lg w-full md:w-3/5 lg:w-1/2 text-dark p-2"
           type="text"
           name="majors"
           placeholder="Majors"
           required
         />
         <input
-          className="rounded-lg w-full md:w-3/5 lg:w-1/2 p-2"
+          className="rounded-lg w-full md:w-3/5 lg:w-1/2 text-dark p-2"
           type="text"
           name="interests"
           placeholder="Interests"

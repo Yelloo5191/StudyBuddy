@@ -8,7 +8,7 @@ import SwitchAccounts from "./SwitchAccount";
 
 export default async function ProfilePage() {
   const supabase = createClient();
-  
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -31,9 +31,9 @@ export default async function ProfilePage() {
     "If we wait until we’re ready, we’ll be waiting for the rest of our lives.",
     "It’s never too late to be what you might have been.",
     "You don’t have to be great to start. But you have to start to be great.",
-    "Nobody can go back and start a new beginning, but anyone can start today and make a new ending."
+    "Nobody can go back and start a new beginning, but anyone can start today and make a new ending.",
   ];
-  
+
   function getRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     return quotes[randomIndex];
@@ -64,7 +64,7 @@ export default async function ProfilePage() {
               unoptimized
             />
           </div>
-          <div className="w-3/4 h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg relative">
+          <div className="w-full h-1/2 flex flex-col gap-8 p-8 bg-light_gray rounded-lg relative">
             <div className="flex flex-row gap-10">
               <div className="flex flex-col gap-6">
                 <h1 className="text-3xl text-white">
@@ -84,11 +84,11 @@ export default async function ProfilePage() {
                   <SwitchAccounts />
                 </div>
               </div>
-                <div className="w-1/2 flex justify-center items-center">
-                  <h1 className="text-2xl text-white text-center italic">
-                    {randomQuote}
-                  </h1>
-                </div>
+              <div className="w-full flex justify-center items-center">
+                <h1 className="text-2xl text-white text-center italic">
+                  {randomQuote}
+                </h1>
+              </div>
             </div>
           </div>
         </div>
