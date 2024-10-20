@@ -25,7 +25,9 @@ export default function Hero() {
           />
         </div>
       </div>
-      <div className="w-full bg-taupe_gray absolute bottom-0 h-20 flex flex-row gap-4 justify-center items-center"></div>
+      <div className="w-full bg-taupe_gray absolute bottom-0 h-20 flex flex-row gap-4 justify-center items-center">
+        <h1 className="justify-center text-5xl ">How does it work?</h1>
+      </div>
     </div>
   );
 }

@@ -1,16 +1,16 @@
 import Image from "next/image";
-import Musics from "./Musics";
-export default function ListenToMusic() {
+
+export default function AIUsage() {
   return (
-    <div className="bg-amber-900 mt-16 relative mb-10 w-full max-w-md h-fit p-4 ml-auto lg:ml-10 mr-auto lg:mr-14 text-white flex flex-col items-center rounded-lg">
+    <div className="bg-seasalt-300 mt-24 mb-12 relative w-full max-w-md h-fit p-4 ml-auto lg:ml-10 mr-auto lg:mr-14 text-white flex flex-col items-center rounded-lg">
       {/* Aspect Ratio Container */}
       <div
         className="relative w-full rounded-lg"
         style={{ paddingBottom: "99.67%" }}
       >
         <Image
-          src="/landing/JammingOut.png"
-          alt="JammingOut"
+          src="/landing/AI.png"
+          alt="AI"
           fill
           className="rounded-lg object-cover"
         />
@@ -18,14 +18,13 @@ export default function ListenToMusic() {
 
       <p className="text-center h-fit font-bold italic mt-1">
         {" "}
-        Listen to music together:
+        Smart Subject Categorizing:
       </p>
 
       <p className=" text-center h-fit">
-        Share and suggest songs to study while jamming out.
+        Use artificial intelligence to match with other students, regardless of
+        course name or description.
       </p>
-
-      <Musics />
     </div>
   );
 }
