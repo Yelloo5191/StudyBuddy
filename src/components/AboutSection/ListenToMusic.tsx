@@ -2,7 +2,7 @@ import Image from "next/image";
 import Musics from "./Musics";
 export default function ListenToMusic() {
   return (
-    <div className="bg-amber-900 mt-44 relative w-full max-w-md h-fit p-4 ml-auto lg:ml-10 mr-auto lg:mr-14 text-white flex flex-col items-center rounded-lg">
+    <div className="bg-amber-900 mt-16 relative mb-10 w-full max-w-md h-fit p-4 ml-auto lg:ml-10 mr-auto lg:mr-14 text-white flex flex-col items-center rounded-lg">
       {/* Aspect Ratio Container */}
       <div
         className="relative w-full rounded-lg"
