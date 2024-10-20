@@ -14,6 +14,7 @@ import AgoraRTC, {
   useRemoteUsers,
 } from "agora-rtc-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 function Dashboard(props: { appId: string; channelName: string }) {
   const client = useRTCClient(
@@ -71,6 +72,8 @@ function Videos(props: { channelName: string; AppID: string }) {
   const { isLoading: isLoadingCam, localCameraTrack } = useLocalCameraTrack();
   const remoteUsers = useRemoteUsers();
   const { audioTracks } = useRemoteAudioTracks(remoteUsers);
+  const [muted, setMuted] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   const router = useRouter();
 
@@ -100,6 +103,31 @@ function Videos(props: { channelName: string; AppID: string }) {
 
   return (
     <div className="flex flex-col justify-between w-full h-full p-1">
+      {/* Mute and Hide Camera Buttons */}
+      <div className="flex flex-row h-10 justify-end gap-4 mb-4">
+        <button
+          onClick={() => {
+            if (localMicrophoneTrack) {
+              localMicrophoneTrack.setEnabled(!muted);
+            }
+            setMuted(!muted);
+          }}
+          className="flex px-5 py-3 text-base font-medium items-center justify-center text-center text-white bg-red-400 rounded-lg hover:bg-red-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        >
+          {muted ? "Unmute" : "Mute"}
+        </button>
+        <button
+          onClick={() => {
+            if (localCameraTrack) {
+              localCameraTrack.setEnabled(hidden);
+            }
+            setHidden(!hidden);
+          }}
+          className="flex px-5 py-3 text-base font-medium items-center justify-center text-center text-white bg-red-400 rounded-lg hover:bg-red-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        >
+          {hidden ? "Show" : "Hide"} Camera
+        </button>
+      </div>
       <div
         className={`grid gap-1 flex-1`}
         style={{
