@@ -9,6 +9,10 @@ export default async function ProfilePage() {
 
   const { data, error } = await supabase.auth.getUser();
 
+  if (error) {
+    console.error(error);
+  }
+
   return (
     <>
       <Header />

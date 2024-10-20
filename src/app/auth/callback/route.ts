@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 // The client you created from the Server-Side Auth instructions
 import { createClient } from "@/utils/supabase/server";
-import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
-import { VscCommentUnresolved } from "react-icons/vsc";
+// import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
+// import { VscCommentUnresolved } from "react-icons/vsc";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
