@@ -60,8 +60,8 @@ export default function Chat({ room_id }: { room_id: string }) {
     };
   }, [room_id, supabase]);
   return (
-    <div className="flex flex-col shadow-md w-full gap-4 h-full">
-      <div className="w-full h-[550px] flex flex-col gap-2 overflow-y-auto bg-light_gray rounded-lg">
+    <div className="flex flex-col max-h-[85vh] max-w-[45%] shadow-md w-full gap-4 h-full overflow-y-hidden overflow-x-hidden">
+      <div className="w-full h-full flex flex-col gap-2 overflow-x-hidden bg-light_gray rounded-lg">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -76,7 +76,7 @@ export default function Chat({ room_id }: { room_id: string }) {
               height={48}
               className="rounded-full"
             />
-            <p className="text-white">{message.message}</p>
+            <p className="text-white text-wrap break-words">{message.message}</p>
           </div>
         ))}
         <div ref={messageEndRef} />
