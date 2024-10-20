@@ -82,8 +82,8 @@ export async function addToQueue(
       // Remove buddies from the queue
       await removeFromQueue(buddy1);
       await removeFromQueue(buddy2);
-      let buddy1_formatted = buddy1.replaceAll("-", "");
-      let buddy2_formatted = buddy2.replaceAll("-", "");
+      const buddy1_formatted = buddy1.replaceAll("-", "");
+      const buddy2_formatted = buddy2.replaceAll("-", "");
       const channel = `${buddy1_formatted}${buddy2_formatted}`;
       console.log(channel);
 

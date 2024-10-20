@@ -10,7 +10,7 @@ export default function Waiting() {
   useEffect(() => {
     const channel = supabase.channel("schema-db-changes");
 
-    const subscription = channel
+    channel
       .on(
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "waiting_queue" },
@@ -25,8 +25,8 @@ export default function Waiting() {
           const currentUserId = currentUser?.id;
 
           if (addedUserId && currentUserId && addedUserId !== currentUserId) {
-            let buddy1_formatted = addedUserId.replaceAll("-", "");
-            let buddy2_formatted = currentUserId.replaceAll("-", "");
+            const buddy1_formatted = addedUserId.replaceAll("-", "");
+            const buddy2_formatted = currentUserId.replaceAll("-", "");
             const channelName = `${buddy2_formatted}${buddy1_formatted}`;
             router.push(`/channel/${channelName}`);
           } else {
@@ -41,7 +41,7 @@ export default function Waiting() {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [router]);
+  }, [router, supabase]);
 
   return (
     <div className="flex flex-col items-center pt-40">
