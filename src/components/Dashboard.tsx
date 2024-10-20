@@ -101,7 +101,7 @@ function Videos(props: { channelName: string; AppID: string }) {
         <button
           onClick={() => {
             if (localMicrophoneTrack) {
-              localMicrophoneTrack.setEnabled(!muted);
+              localMicrophoneTrack.setEnabled(muted);
             }
             setMuted(!muted);
           }}
