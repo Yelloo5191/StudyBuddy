@@ -1,4 +1,46 @@
+"use client";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Waiting() {
+  const supabase = createClient();
+  const router = useRouter();
+
+  useEffect(() => {
+    const channel = supabase.channel("schema-db-changes");
+
+    const subscription = channel
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "waiting_queue" },
+        async (payload) => {
+          console.log("Changes in queue:", payload);
+
+          const { id: removedUserId } = payload.old as { id: string };
+          const {
+            data: { user: currentUser },
+          } = await supabase.auth.getUser();
+          console.log("Current user:", currentUser);
+          const currentUserId = currentUser?.id;
+
+          if (removedUserId === currentUserId) {
+            const buddy1_formatted = removedUserId.replaceAll("-", "");
+            const buddy2_formatted = (
+              payload.new as { user_id: string }
+            ).user_id.replaceAll("-", "");
+            const channelName = `${buddy1_formatted}${buddy2_formatted}`;
+            router.push(`/channel/${channelName}`);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [router]);
+
   return (
     <div className="flex flex-col items-center pt-40">
       <h1>Searching for a buddy</h1>

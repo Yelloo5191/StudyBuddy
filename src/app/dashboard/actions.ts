@@ -107,8 +107,7 @@ async function fetchMatches() {
   if (queueData.length < 2) {
     console.log("Not enough users in the queue, waiting...");
     //  show a message until there are enough users
-    return null;
-    // redirect("/waiting");
+    redirect("/waiting");
   }
 
   const pairsPrompt = createPairsPrompt(queueData);
