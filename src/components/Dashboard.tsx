@@ -16,7 +16,9 @@ import AgoraRTC, {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Chat from "./Chat/Chat";
-import Music from "./Music/Music";
+// import Music from "./Music/Music";
+// import { createClient } from "@/utils/supabase/client";
+// import { User } from "@supabase/supabase-js";
 
 function Dashboard(props: {
   appId: string;
@@ -26,6 +28,15 @@ function Dashboard(props: {
   const client = useRTCClient(
     AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })
   );
+
+  // const [user, setUser] = useState<User | null>(null);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const { data } = await createClient().auth.getUser();
+  //     setUser(data?.user ?? null);
+  //   };
+  //   fetchUser();
+  // }, []);
 
   return (
     <AgoraRTCProvider client={client}>
@@ -57,8 +68,27 @@ function Dashboard(props: {
           </div>
         </div>
         {/* MUSIC */}
-        <div className="w-1/2 mt-20 h-fit bg-raisin_black rounded-lg">
-          <Music userId={props.userId} />
+
+        <div className="w-1/2 h-full bg-raisin_black rounded-lg flex flex-col">
+          {/* <Music userId={props.userId} /> */}
+
+          <div className="flex h-full w-full justify-center items-center">
+            <iframe
+              // width="50%"
+              // height="100%"
+              src="https://www.youtube.com/embed/X7Xt2kIk6PE?autoplay=1&controls=0&disablekb=1&modestbranding=1&rel=0&mute=1"
+              title="YouTube video player"
+              style={{
+                pointerEvents: "none",
+                width: "25vw",
+                height: "70vh",
+                maxWidth: "1000px",
+                maxHeight: "800px",
+                aspectRatio: "16/9",
+              }}
+              allow="autoplay; picture-in-picture"
+            ></iframe>
+          </div>
         </div>
       </div>
     </AgoraRTCProvider>
